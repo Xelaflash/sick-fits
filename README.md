@@ -5,22 +5,42 @@
   </a>
 </p>
 
-> E-commerce React websites made for React advanced Wes Bos course. 
+> Full stack DEMO online clothing store made for React advanced Wes Bos course. 
 
 ### 🏠 [Homepage](todo)
 
-### ✨ [Demo](todo)
+
+
+## Stack
+- React.js
+- Next.js
+- Apollo client
+- Keystone.js (headless CMS)
+- GraphQL
+- MongoDB
+- SCSS
+- Styled components
+- Jest
+- React testing library
+
+ 
+## Features
+- Search
+- Sell products
+- Add to cart
+- Checkout 
+- Authentification
+- Permissions
+- Email sending
+- charging credit cards
+- image and product upload/management
+
 
 ## Author
-
-👤 **aleGWebDev**
+👤 **alexGWebDev**
 
 * Website: www.alexgwebdev.com
 * Github: [@Xelaflash](https://github.com/Xelaflash)
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
