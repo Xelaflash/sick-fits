@@ -8,6 +8,7 @@ import {
 import { User } from './schemas/User';
 import { Product } from './schemas/Product';
 import { ProductImage } from './schemas/ProductImage';
+import { insertSeedData } from './seed-data';
 
 const databaseUrl = process.env.DATABASE_URL || 'mongodb://localhost/sick-fits';
 
@@ -37,7 +38,13 @@ export default withAuth(
     db: {
       adapter: 'mongoose',
       url: databaseUrl,
-      // TODO: add seed
+      // seed
+      async onConnect(keystone) {
+        console.log('connected to DB --- beep beoop-----');
+        if (process.argv.includes('--seed-data')) {
+          await insertSeedData(keystone);
+        }
+      },
     },
     // Keystone refers to data type as 'lists'
     lists: createSchema({
