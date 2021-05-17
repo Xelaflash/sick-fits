@@ -14,7 +14,7 @@ const NavStyles = styled.ul`
     position: relative;
     text-transform: uppercase;
     font-weight: 900;
-    font-size: 1em;
+    font-size: 1.2rem;
     background: none;
     border: 0;
     cursor: pointer;
@@ -48,7 +48,7 @@ const NavStyles = styled.ul`
     &:hover,
     &:focus {
       outline: none;
-      text-decoration:none;
+      text-decoration: none;
       &:after {
         width: calc(100% - 60px);
       }

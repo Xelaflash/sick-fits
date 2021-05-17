@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
+import styled from 'styled-components';
+import Product from './Product';
 
 const ALL_PRODUCTS_QUERY = gql`
   query ALL_PRODUCTS_QUERY {
@@ -20,11 +22,25 @@ const ALL_PRODUCTS_QUERY = gql`
   }
 `;
 
+const ProductListStyles = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 60px;
+  align-items: center;
+`;
+
 export default function Products() {
-  useQuery(ALL_PRODUCTS_QUERY);
+  const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
+  console.log(data, error, loading);
+  // TODO: change for a spinner or skeleton frame
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
   return (
-    <div>
-      <p>Products</p>
-    </div>
+    <ProductListStyles>
+      {data.allProducts.map((product) => (
+        <Product product={product} key={product.id} />
+      ))}
+    </ProductListStyles>
   );
 }
