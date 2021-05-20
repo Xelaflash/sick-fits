@@ -19,7 +19,8 @@ const ProductStyles = styled.div`
   }
 `;
 
-const SINGLE_ITEM_QUERY = gql`
+// exported because we are using it in UpdateProduct component
+export const SINGLE_ITEM_QUERY = gql`
   query SINGLE_PRODUCT_QUERY($id: ID!) {
     Product(where: { id: $id }) {
       id
