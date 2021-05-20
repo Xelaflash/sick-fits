@@ -7,7 +7,6 @@ export default function formatMoney(amount = 0) {
   //  check if amount is round
   if (amount % 100 === 0) {
     options.minimumFractionDigits = 0;
-    console.log('no dec');
   }
   const formatter = Intl.NumberFormat('en-US', options);
   return formatter.format(amount / 100);
