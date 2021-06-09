@@ -38,10 +38,11 @@ export default function UpdateProduct({ id }) {
 
   //  create state for form inputs
   const { inputs, handleChange, clearForm, resetForm } = useForm(data?.Product);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <DisplayError error={error} />;
-  // 3. form to handle the updates
 
+  // 3. form to handle the updates
   return (
     <Form
       onSubmit={async (e) => {
@@ -55,6 +56,7 @@ export default function UpdateProduct({ id }) {
             price: inputs.price,
           },
         });
+        alert('Product updated');
       }}
     >
       <DisplayError error={error || updateError} />

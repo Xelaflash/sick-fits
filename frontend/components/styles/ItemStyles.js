@@ -33,6 +33,7 @@ const ItemStyles = styled.div`
       font-size: 1.4rem;
       text-align: center;
       padding: 1rem;
+      cursor: pointer;
     }
   }
 `;
