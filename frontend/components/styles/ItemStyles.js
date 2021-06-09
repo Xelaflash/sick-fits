@@ -30,7 +30,8 @@ const ItemStyles = styled.div`
     & > * {
       background: white;
       border: 0;
-      font-size: 1rem;
+      font-size: 1.4rem;
+      text-align: center;
       padding: 1rem;
     }
   }
