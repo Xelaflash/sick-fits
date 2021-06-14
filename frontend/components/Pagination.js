@@ -6,7 +6,8 @@ import PaginationStyles from './styles/PaginationStyles';
 import DisplayError from './ErrorMessage';
 import { perPage } from '../config';
 
-const PAGINATION_QUERY = gql`
+// exported because used in paginationField.js
+export const PAGINATION_QUERY = gql`
   query {
     _allProductsMeta {
       count

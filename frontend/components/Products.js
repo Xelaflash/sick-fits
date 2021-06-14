@@ -1,11 +1,15 @@
 import { useQuery } from '@apollo/client';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
+import { perPage } from '../config';
 import Product from './Product';
 
 export const ALL_PRODUCTS_QUERY = gql`
-  query ALL_PRODUCTS_QUERY {
-    allProducts {
+  # skip var is number of item to not display based on pagination
+  # if product per page is 2 and we are on page 2 , skip = 2;
+
+  query ALL_PRODUCTS_QUERY($skip: Int = 0, $first: Int) {
+    allProducts(first: $first, skip: $skip) {
       id
       name
       price
@@ -29,8 +33,13 @@ const ProductListStyles = styled.div`
   align-items: center;
 `;
 
-export default function Products() {
-  const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY);
+export default function Products({ page }) {
+  const { data, error, loading } = useQuery(ALL_PRODUCTS_QUERY, {
+    variables: {
+      skip: page * perPage - perPage,
+      first: perPage,
+    },
+  });
   // console.log(data, error, loading);
   // TODO: change for a spinner or skeleton frame
   if (loading) return <p>Loading...</p>;
