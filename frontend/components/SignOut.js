@@ -1,6 +1,7 @@
 import { useMutation } from '@apollo/client';
 import gql from 'graphql-tag';
-import { useHistory } from 'react-router-dom';
+import { useRouter } from 'next/router';
+
 import { CURRENT_USER_QUERY } from './User';
 
 const SIGNOUT_MUTATION = gql`
@@ -11,14 +12,10 @@ const SIGNOUT_MUTATION = gql`
 `;
 
 export default function SignOut() {
-  // const history = useHistory();
-  // console.log(history);
-
-  const routeChange = () => {
-    // TODO: find a way to redictect after logout
-    // const path = `/`;
-    // history.push(path);
-  };
+  const router = useRouter();
+  function redirect() {
+    router.push('/products');
+  }
 
   const [signout] = useMutation(SIGNOUT_MUTATION, {
     // refetch the current user for re-rendering
@@ -27,7 +24,13 @@ export default function SignOut() {
 
   return (
     <>
-      <button type="button" onClick={(signout, routeChange)}>
+      <button
+        type="button"
+        onClick={() => {
+          signout();
+          redirect();
+        }}
+      >
         Log Out
       </button>
     </>

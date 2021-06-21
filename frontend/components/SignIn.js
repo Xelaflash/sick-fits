@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router';
 import Form from './styles/Form';
 import useForm from '../lib/useForm';
 import { CURRENT_USER_QUERY } from './User';
@@ -24,23 +25,28 @@ const SIGNIN_MUTATION = gql`
 `;
 
 export default function SignIn() {
-  const { inputs, handleChange, resetForm } = useForm({
+  const { inputs, handleChange } = useForm({
     email: '',
     password: '',
   });
 
-  const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
+  const [signin, { data }] = useMutation(SIGNIN_MUTATION, {
     variables: inputs,
     // refetch the current user
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
+
+  const router = useRouter();
+  function redirect() {
+    router.push('/products');
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     // send email and password to graphQl API
     const res = await signin();
     // console.log(res);
-    resetForm();
+    redirect();
   }
 
   const error =
