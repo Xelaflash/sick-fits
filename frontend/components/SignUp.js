@@ -3,63 +3,52 @@ import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import Form from './styles/Form';
 import useForm from '../lib/useForm';
-import { CURRENT_USER_QUERY } from './User';
+// import { CURRENT_USER_QUERY } from './User';
 import DisplayError from './ErrorMessage';
 
-const SIGNIN_MUTATION = gql`
-  mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-    authenticateUserWithPassword(email: $email, password: $password) {
-      ... on UserAuthenticationWithPasswordSuccess {
-        item {
-          id
-          email
-          name
-        }
-      }
-      ... on UserAuthenticationWithPasswordFailure {
-        code
-        message
-      }
+const SIGNUP_MUTATION = gql`
+  mutation SIGNUP_MUTATION(
+    $email: String!
+    $name: String!
+    $password: String!
+  ) {
+    createUser(data: { email: $email, name: $name, password: $password }) {
+      id
+      email
+      name
     }
   }
 `;
 
-export default function SignIn() {
+export default function SignUp() {
   const { inputs, handleChange } = useForm({
     email: '',
+    name: '',
     password: '',
   });
 
-  const [signin, { data }] = useMutation(SIGNIN_MUTATION, {
+  const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
     variables: inputs,
     // refetch the current user
-    refetchQueries: [{ query: CURRENT_USER_QUERY }],
+    // refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
-
-  const router = useRouter();
-  function redirect() {
-    router.push('/products');
-  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     // send email and password to graphQl API
-    const res = await signin();
+    const res = await signup().catch(console.error);
     console.log(res);
-    redirect();
+    console.log({ data, loading, error });
   }
-
-  const error =
-    data?.authenticateUserWithPassword.__typename ===
-    'UserAuthenticationWithPasswordFailure'
-      ? data?.authenticateUserWithPassword
-      : undefined;
 
   return (
     <Form method="POST" onSubmit={handleSubmit}>
-      <h2>Sign Into Your Account</h2>
+      <h2>Create an Account</h2>
       <DisplayError error={error} />
       <fieldset className="inputs-subgrid">
+        {data?.createUser && (
+          <p>Sign Up with {data.createUser.email} - Please Sign In </p>
+        )}
         <label htmlFor="email">
           Email
           <input
@@ -68,6 +57,17 @@ export default function SignIn() {
             placeholder="x@x.com"
             autoComplete="email"
             value={inputs.email}
+            onChange={handleChange}
+          />
+        </label>
+        <label htmlFor="name">
+          Name
+          <input
+            type="text"
+            name="name"
+            placeholder="John Doe"
+            autoComplete="name"
+            value={inputs.name}
             onChange={handleChange}
           />
         </label>
@@ -82,7 +82,7 @@ export default function SignIn() {
             onChange={handleChange}
           />
         </label>
-        <button type="submit">Sign In!</button>
+        <button type="submit">Create Account</button>
       </fieldset>
     </Form>
   );
