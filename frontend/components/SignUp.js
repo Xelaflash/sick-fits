@@ -1,9 +1,7 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
-import { useRouter } from 'next/router';
 import Form from './styles/Form';
 import useForm from '../lib/useForm';
-// import { CURRENT_USER_QUERY } from './User';
 import DisplayError from './ErrorMessage';
 
 const SIGNUP_MUTATION = gql`
@@ -29,8 +27,6 @@ export default function SignUp() {
 
   const [signup, { data, loading, error }] = useMutation(SIGNUP_MUTATION, {
     variables: inputs,
-    // refetch the current user
-    // refetchQueries: [{ query: CURRENT_USER_QUERY }],
   });
 
   async function handleSubmit(e) {
