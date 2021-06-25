@@ -28,7 +28,7 @@ export default function Reset({ token }) {
     token,
   });
 
-  const [reset, { data, error }] = useMutation(RESET_MUTATION, {
+  const [reset, { data, loading, error }] = useMutation(RESET_MUTATION, {
     variables: inputs,
   });
 
@@ -43,14 +43,14 @@ export default function Reset({ token }) {
     // send email and password to graphQl API
     await reset().catch(console.error);
     // console.log(res);
-    // console.log({ data, loading, error });
+    console.log({ data, loading, error });
   }
 
   return (
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Reset your Password</h2>
       <DisplayError error={error || sucessfullError} />
-      <fieldset className="inputs-subgrid">
+      <fieldset disabled={loading} aria-busy={loading}>
         {data?.redeemUserPasswordResetToken === null && (
           <p>Success! Password reseted. Please SignIn</p>
         )}

@@ -18,9 +18,12 @@ export default function RequestReset() {
     email: '',
   });
 
-  const [requestReset, { data, error }] = useMutation(REQUEST_RESET_MUTATION, {
-    variables: inputs,
-  });
+  const [requestReset, { data, loading, error }] = useMutation(
+    REQUEST_RESET_MUTATION,
+    {
+      variables: inputs,
+    }
+  );
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -34,7 +37,11 @@ export default function RequestReset() {
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Reset Password</h2>
       <DisplayError error={error} />
-      <fieldset className="inputs-subgrid">
+      <fieldset
+        className="inputs-subgrid"
+        disabled={loading}
+        aria-busy={loading}
+      >
         {data?.sendUserPasswordResetLink === null && (
           <p>Reset Link sent. Check your email</p>
         )}

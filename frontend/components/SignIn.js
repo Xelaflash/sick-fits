@@ -30,7 +30,7 @@ export default function SignIn() {
     password: '',
   });
 
-  const [signin, { data }] = useMutation(SIGNIN_MUTATION, {
+  const [signin, { data, loading }] = useMutation(SIGNIN_MUTATION, {
     variables: inputs,
     // refetch the current user
     refetchQueries: [{ query: CURRENT_USER_QUERY }],
@@ -59,7 +59,11 @@ export default function SignIn() {
     <Form method="POST" onSubmit={handleSubmit}>
       <h2>Sign Into Your Account</h2>
       <DisplayError error={error} />
-      <fieldset className="inputs-subgrid">
+      <fieldset
+        className="inputs-subgrid"
+        disabled={loading}
+        aria-busy={loading}
+      >
         <label htmlFor="email">
           Email
           <input
