@@ -22,6 +22,7 @@ const CartStyles = styled.div`
     border-bottom: 5px solid var(--black);
     margin-bottom: 2rem;
     padding-bottom: 2rem;
+    text-align: center;
   }
   footer {
     border-top: 10px double var(--black);

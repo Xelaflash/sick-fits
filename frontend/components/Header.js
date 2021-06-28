@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import Nav from './Nav';
+import Cart from './Cart';
 
 const Logo = styled.h1`
   background: var(--red);
@@ -43,6 +44,7 @@ export default function Header() {
       </div>
       <div className="sub-bar">
         <p>search</p>
+        <Cart />
       </div>
     </HeaderStyles>
   );
