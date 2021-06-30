@@ -8,6 +8,11 @@ const CloseButton = styled.button`
   position: absolute;
   z-index: 2;
   right: 0;
+  top: -2px;
+  padding: 4px 12px;
+  &:hover {
+    background: var(--grey);
+  }
 `;
 
 export default CloseButton;

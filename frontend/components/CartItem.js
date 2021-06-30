@@ -19,7 +19,7 @@ const CartItemStyles = styled.li`
 
 export default function CartItem({ cartItem }) {
   const { product } = cartItem;
-  console.log(product);
+  // console.log(product);
   if (!product) return null;
   return (
     <CartItemStyles>

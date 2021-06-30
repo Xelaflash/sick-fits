@@ -11,6 +11,7 @@ import { ProductImage } from './schemas/ProductImage';
 import { CartItem } from './schemas/CartItem';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
+import { extendGraphqlSchema } from './mutations/index';
 
 const databaseUrl = process.env.DATABASE_URL || 'mongodb://localhost/sick-fits';
 
@@ -63,6 +64,7 @@ export default withAuth(
       ProductImage,
       CartItem,
     }),
+    extendGraphqlSchema,
     ui: {
       // show UI only for user who pass this test
       isAccessAllowed: ({ session }) =>
