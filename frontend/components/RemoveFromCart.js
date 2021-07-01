@@ -25,10 +25,17 @@ const DELETE_CART_ITEM_MUTATION = gql`
   }
 `;
 
+function update(cache, payload) {
+  // console.log(payload);
+  // console.log('running refreshFrontENd function after a delete');
+  cache.evict(cache.identify(payload.data.deleteCartItem));
+}
+
 export default function RemoveFromCart({ id }) {
   //  the delete mutation
   const [deleteCartItem, { loading }] = useMutation(DELETE_CART_ITEM_MUTATION, {
     variables: { id },
+    update,
   });
   return (
     <RemoveBtn
