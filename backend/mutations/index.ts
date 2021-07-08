@@ -2,6 +2,7 @@
 
 import { graphQLSchemaExtension } from '@keystone-next/keystone/schema';
 import addToCart from './addToCart';
+import checkout from './checkout';
 
 // We make a fake graphql tagged template literal in order to have the syntax highlighter.
 // We just convert the tag recognized by Vscode to a raw string (what is expected)
@@ -12,11 +13,14 @@ export const extendGraphqlSchema = graphQLSchemaExtension({
   typeDefs: gql`
     type Mutation {
       addToCart(productId: ID): CartItem
+      # typescript stuff here after : it's hat's the mutatio, will return
+      checkout(token: String!): Order
     }
   `,
   resolvers: {
     Mutation: {
       addToCart,
+      checkout,
     },
   },
 });

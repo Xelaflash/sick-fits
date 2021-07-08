@@ -9,6 +9,8 @@ import nProgress from 'nprogress';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { FaExclamationTriangle } from 'react-icons/fa';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/client';
 import SickButton from './styles/SickButton';
 
 const CheckoutFormStyles = styled.form`
@@ -22,6 +24,20 @@ const CheckoutFormStyles = styled.form`
   margin: auto;
 `;
 
+const CREATE_ORDER_MUTATION = gql`
+  mutation CREATE_ORDER_MUTATION($token: String!) {
+    checkout(token: $token) {
+      id
+      charge
+      total
+      items {
+        id
+        name
+      }
+    }
+  }
+`;
+
 const stripeLib = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY);
 
 function CheckoutForm() {
@@ -32,6 +48,9 @@ function CheckoutForm() {
   // Hooks coming from stripe (https://stripe.com/docs/stripe-js/react)
   const stripe = useStripe();
   const elements = useElements();
+  const [checkout, { error: graphQLError }] = useMutation(
+    CREATE_ORDER_MUTATION
+  );
 
   async function handleSubmit(e) {
     // stop the form from submitting and turn loader on
@@ -48,8 +67,15 @@ function CheckoutForm() {
     // handle stripe errors ()
     if (error) {
       setError(error);
+      nProgress.done();
     }
     // send token from step 3 to keystone server via custom mutation
+    const order = await checkout({
+      variables: {
+        token: paymentMethod.id,
+      },
+    });
+    console.log(order);
     // change page to view the order
     // close cart
     // turn loader off
@@ -70,6 +96,19 @@ function CheckoutForm() {
         >
           <FaExclamationTriangle />
           <p>{error.message}</p>
+        </div>
+      )}
+      {graphQLError && (
+        <div
+          style={{
+            fontSize: 14,
+            color: 'red',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          <FaExclamationTriangle />
+          <p>{graphQLError.message}</p>
         </div>
       )}
       <CardElement />
