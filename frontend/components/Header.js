@@ -39,7 +39,7 @@ export default function Header() {
     <HeaderStyles>
       <div className="bar">
         <Logo>
-          <Link href="/">Sick Fits</Link>
+          <Link href="/">Sick Kicks</Link>
         </Logo>
         <Nav />
       </div>

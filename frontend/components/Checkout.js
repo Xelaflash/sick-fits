@@ -74,7 +74,7 @@ function CheckoutForm() {
       type: 'card',
       card: elements.getElement(CardElement),
     });
-    console.log(paymentMethod);
+    // console.log(paymentMethod);
     // handle stripe errors ()
     if (error) {
       setError(error);
@@ -86,7 +86,7 @@ function CheckoutForm() {
         token: paymentMethod.id,
       },
     });
-    console.log(order);
+    // console.log(order);
     // change page to view the order
     router.push({
       pathname: `/order/[id]`,

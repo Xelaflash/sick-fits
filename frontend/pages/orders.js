@@ -1,7 +1,14 @@
+import Head from 'next/head';
+
 export default function OrdersPage() {
   return (
-    <div>
-      <p>Orders</p>
-    </div>
+    <>
+      <Head>
+        <title>Sick Kicks - Orders</title>
+      </Head>
+      <div>
+        <p>Orders</p>
+      </div>
+    </>
   );
 }

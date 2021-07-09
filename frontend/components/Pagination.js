@@ -28,7 +28,7 @@ export default function Pagination({ page }) {
     <PaginationStyles>
       <Head>
         <title>
-          Sick Fits - Page {page} of {pageCount}{' '}
+          Sick Kicks - Page {page} of {pageCount}{' '}
         </title>
       </Head>
       {/* 1. Render the pagination links */}

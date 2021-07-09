@@ -1,7 +1,14 @@
+import Head from 'next/head';
+
 export default function AccountPage() {
   return (
-    <div>
-      <p>Account</p>
-    </div>
+    <>
+      <Head>
+        <title>Sick Kicks - Account</title>
+      </Head>
+      <div>
+        <p>Orders</p>
+      </div>
+    </>
   );
 }
