@@ -15,6 +15,7 @@ import { Role } from './schemas/Role';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { extendGraphqlSchema } from './mutations/index';
+import { permissionsList } from './schemas/fields';
 
 const databaseUrl = process.env.DATABASE_URL || 'mongodb://localhost/sick-fits';
 
@@ -80,7 +81,8 @@ export default withAuth(
     },
     // TODO: Add value session here
     session: withItemData(statelessSessions(sessionConfig), {
-      User: 'id',
+      // GraphQL query
+      User: `id name email role { ${permissionsList.join(' ')} }`,
     }),
   })
 );

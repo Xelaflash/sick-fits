@@ -29,6 +29,9 @@ export const permissionFields = {
 
 export type Permission = keyof typeof permissionFields;
 
+// we create a type of permission, we take the keys (canManage...) and we create an array of this and store it into the var permissionsList
+// We will use when we query the user using session. (cf keystone.ts)
+
 export const permissionsList: Permission[] = Object.keys(
   permissionFields
 ) as Permission[];
