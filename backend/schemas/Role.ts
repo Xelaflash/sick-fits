@@ -19,7 +19,7 @@ export const Role = list({
     name: text({ isRequired: true }),
     ...permissionFields,
     assignedTo: relationship({
-      ref: 'User.role', // TODO: add role to user
+      ref: 'User.role', // !! check user for the other part of relationship
       many: true,
       ui: {
         itemView: { fieldMode: 'read' },

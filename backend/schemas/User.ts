@@ -23,5 +23,6 @@ export const User = list({
       //  TODO: Add access control
     }),
     orders: relationship({ ref: 'Order.user', many: true }),
+    products: relationship({ ref: 'Product.user', many: true }),
   },
 });
