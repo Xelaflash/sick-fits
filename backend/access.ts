@@ -53,4 +53,11 @@ export const rules = {
     // if not do they own this item? (where filter that return a bool)
     return { user: { id: session.itemId } };
   },
+  canReadProducts({ session }: ListAccessArgs) {
+    if (permissions.canManageProducts({ session })) {
+      return true; // they can read everything
+    }
+    // they should only see products with Available status
+    return { status: 'AVAILABLE' };
+  },
 };
