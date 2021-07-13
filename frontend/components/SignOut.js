@@ -14,7 +14,7 @@ const SIGNOUT_MUTATION = gql`
 export default function SignOut() {
   const router = useRouter();
   function redirect() {
-    router.push('/products');
+    router.push('/');
   }
 
   const [signout] = useMutation(SIGNOUT_MUTATION, {

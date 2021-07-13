@@ -38,15 +38,19 @@ export default function SignIn() {
 
   const router = useRouter();
   function redirect() {
-    router.push('/products');
+    router.push('/');
   }
+
+  // console.log(router.pathname);
 
   async function handleSubmit(e) {
     e.preventDefault();
     // send email and password to graphQl API
     const res = await signin();
-    console.log(res);
-    redirect();
+    // console.log(res);
+    if (router.pathname !== '/sell') {
+      redirect();
+    }
   }
 
   const error =
