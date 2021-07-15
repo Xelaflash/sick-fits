@@ -5,6 +5,7 @@ import Link from 'next/link';
 import DisplayError from '../components/ErrorMessage';
 import formatMoney from '../lib/formatMoney';
 import OrderItemsStyles from '../components/styles/OrderItemStyles';
+import Layout from '../components/Layout';
 
 const USER_ORDERS_QUERY = gql`
   query USER_ORDERS_QUERY {
@@ -51,7 +52,7 @@ export default function OrdersPage() {
   const { allOrders } = data;
   // console.log(allOrders);
   return (
-    <>
+    <Layout>
       <Head>
         <title>Sick Kicks - Your Orders ({allOrders.length})</title>
       </Head>
@@ -91,6 +92,6 @@ export default function OrdersPage() {
           </OrderItemsStyles>
         ))}
       </OrderUl>
-    </>
+    </Layout>
   );
 }

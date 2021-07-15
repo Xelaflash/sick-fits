@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import CreateProduct from '../components/CreateProduct';
+import Layout from '../components/Layout';
 import PleaseSignIn from '../components/PleaseSignIn';
 
 export default function SellPage() {
@@ -9,9 +10,11 @@ export default function SellPage() {
         <title>Sick Kicks - Sell your kicks</title>
       </Head>
       <div>
-        <PleaseSignIn>
-          <CreateProduct />
-        </PleaseSignIn>
+        <Layout>
+          <PleaseSignIn>
+            <CreateProduct />
+          </PleaseSignIn>
+        </Layout>
       </div>
     </>
   );

@@ -20,12 +20,16 @@ const Logo = styled.h1`
 `;
 
 const HeaderStyles = styled.header`
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
   .bar {
     border-bottom: 10px solid var(--black);
     display: grid;
     grid-template-columns: auto 1fr;
     justify-content: space-between;
     align-items: stretch;
+    background: white;
   }
   .sub-bar {
     display: grid;
