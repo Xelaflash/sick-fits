@@ -7,8 +7,7 @@
 
 > Full stack DEMO online clothing store made for React advanced Wes Bos course. 
 
-### 🏠 NOT DEPLOYED YET
-
+### 🏠 www.scepsnkrs.club 
 
 
 ## Stack
@@ -33,6 +32,13 @@
 - charging credit cards
 - image and product upload/management
 
+## Deploy
+- Frontend: deployed to Netlify
+- Backend: deployed to Digital Ocean
+## Backend
+code: https://github.com/Xelaflash/sick-fits_backend
+url: www.api.scepsnkrs.club
+
 
 ## Author
 👤 **alexGWebDev**
@@ -40,5 +46,4 @@
 * Website: www.alexgwebdev.com
 * Github: [@Xelaflash](https://github.com/Xelaflash)
 
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+
