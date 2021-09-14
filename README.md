@@ -7,7 +7,7 @@
 
 > Full stack DEMO online clothing store made for React advanced Wes Bos course. 
 
-### 🏠 [Homepage](todo)
+### 🏠 NOT DEPLOYED YET
 
 
 
@@ -20,8 +20,6 @@
 - MongoDB
 - SCSS
 - Styled components
-- Jest
-- React testing library
 
  
 ## Features
