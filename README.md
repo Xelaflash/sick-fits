@@ -36,8 +36,8 @@
 - Frontend: deployed to Netlify
 - Backend: deployed to Digital Ocean
 ## Backend
-[code] https://github.com/Xelaflash/sick-fits_backend
-[url] https://sick-fits-backend-7vtjs.ondigitalocean.app/
+[code] (https://github.com/Xelaflash/sick-fits_backend)
+[url] (https://sick-fits-backend-7vtjs.ondigitalocean.app/)
 
 
 ## Author
