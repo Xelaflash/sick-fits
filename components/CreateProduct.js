@@ -33,13 +33,13 @@ const CREATE_PRODUCT_MUTATION = gql`
 `;
 
 export default function CreateProduct() {
-  const { inputs, handleChange, clearForm, resetForm } = useForm({
-    name: 'prien',
-    price: 545,
-    description: 'desc test',
+  const { inputs, handleChange, clearForm } = useForm({
+    name: '',
+    price: '',
+    description: '',
   });
 
-  const [createProduct, { loading, error, data }] = useMutation(
+  const [createProduct, { loading, error }] = useMutation(
     CREATE_PRODUCT_MUTATION,
     // permits to refetch data from backend after product creation
     { variables: inputs, refetchQueries: [{ query: ALL_PRODUCTS_QUERY }] }
@@ -113,3 +113,5 @@ export default function CreateProduct() {
     </Form>
   );
 }
+
+export { CREATE_PRODUCT_MUTATION };
