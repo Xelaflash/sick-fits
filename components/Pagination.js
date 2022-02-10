@@ -25,7 +25,7 @@ export default function Pagination({ page }) {
   const pageCount = Math.ceil(count / perPage);
 
   return (
-    <PaginationStyles>
+    <PaginationStyles data-testid="pagination">
       <Head>
         <title>
           Sick Kicks - Page {page} of {pageCount}{' '}
