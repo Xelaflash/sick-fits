@@ -48,7 +48,7 @@ export default function SingleProduct({ id }) {
 
   const product = data.Product;
   return (
-    <ProductStyles>
+    <ProductStyles data-testid="singleProduct">
       {/* next has a pkg similar to helmet just add Head component anywhere and pass SEO title */}
       <Head>
         <title>Sick Fits | {product.name}</title>
